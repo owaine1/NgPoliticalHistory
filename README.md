@@ -1,4 +1,4 @@
-#New site for NgPoliticalHistory
+# New site for NgPoliticalHistory
 Used the following technologies 
 
 * angular.js
