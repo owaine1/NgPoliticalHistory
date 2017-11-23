@@ -5,13 +5,35 @@
     <title>MEAN Demo</title>
     <link rel="icon" href="https://vignette.wikia.nocookie.net/animalcrossing/images/8/8c/Dace_HHD_Icon.png">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="js/frontend_app.js"></script>
 </head>
 
-<body>
+<body ng-app="pres_data">
     <h1>MEAN demo</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>President</th>
+                <th>Birth year</th>
+                <th>Death year</th>
+                <th>Took office</th>
+                <th>Left office</th>
+                <th>Party</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="president in presidents">
+            <td>{{president.number}}</td>
+            <td>{{presidents.president}}</td>
+            <td>{{presidents.birth year}}</td>
+            <td>{{presidents.death year}}</td>
+            <td>{{presidents.took office}}</td>
+            <td>{{presidents.left office}}</td>
+            <td>{{presidents.party}}</td>
+        </tbody>
+    </table>
 </body>
 
 </html>
