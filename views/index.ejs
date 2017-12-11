@@ -3,7 +3,7 @@
 
 <head>
     <title>Presidents</title>
-    <link rel="icon" href="https://vignette.wikia.nocookie.net/animalcrossing/images/8/8c/Dace_HHD_Icon.png">
+    <link rel="icon" href="https://18f.gsa.gov/assets/img/global/usa-flag.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -13,7 +13,16 @@
 
 <body ng-controller="pres_data">
     <h1>Presidents of the United States</h1>
-    Sort Type: {{ sortType }} Sort Reverse: {{ sortReverse }} Search Query: {{ searchFish }}
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-search"></i>
+                </div>
+                <input type="text" class="form-control" placeholder="Search Presidents" ng-model="searchPresidents">
+            </div>
+        </div>
+    </form>
     <table class="table">
 
         <thead>
@@ -73,9 +82,11 @@
                         <span ng-show="sortType == 'party' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
-        <tbody ng-repeat="president in presidents | orderBy: sortType: sortReverse">
+        <tbody ng-repeat="president in presidents | orderBy: sortType: sortReverse | filter:searchPresidents">
             <tr ng-class="{'democratic': president.party == 'Democratic', 
             'republican': president.party == 'Republican'}">
                 <!-- 'demrep': president.party == Democratic-Republican, 'whig': president.party == Whig} -->
@@ -83,8 +94,9 @@
                     <input type="text" ng-model="president.number">
                 </td>
                 <td>
-
-                    <input type="text" ng-model="president.president | uppercase">
+                    {{president.president | uppercase}}
+                    <!-- <p ng-show="userForm.username.$error.minlength">President's name is too short!</p> -->
+                    // TODO tried 2 way by doesnt work. need to write my own directive // https://stackoverflow.com/questions/11616636/how-to-do-two-way-filtering-in-angularjs
                 </td>
                 <td>
                     <input type="text" ng-model="president.birth_year">
@@ -94,7 +106,7 @@
 
                 </td>
                 <td>
-                    <input type="text" ng-model="president.death_year-president.birth_year">
+                    {{president.death_year - president.birth_year}}
                 </td>
                 <td>
                     <input type="text" ng-model="president.took_office">
@@ -104,7 +116,7 @@
                 </td>
                 <td>
                     <!-- years in office see fronend app-->
-                    <input type="text" ng-model="years_in_office(president)">
+                    <!-- <input type="text" ng-model="years_in_office()"> -->
                 </td>
                 <td>
                     <span ng-if="president.party == 'Democratic'">
@@ -113,13 +125,13 @@
                         <img src="../images/elephant.jpg"> </span>
                 </td>
                 <td>
-                    <input type="text" ng-model="president.party">
+                    <input type="text" ng-model="president.party" uib-btn-checkbox>
                 </td>
                 <td>
-                    <button ng-click="update(employee)">update</button>
+                    <button ng-click="update(president)">update</button>
                 </td>
                 <td>
-                    <button ng-click="delete(employee)">delete</button>
+                    <button ng-click="delete(president)">delete</button>
                 </td>
             </tr>
         </tbody>

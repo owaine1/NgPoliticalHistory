@@ -1,0 +1,36 @@
+<form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+      </div>      
+    </div>
+  </form>
+
+  $scope.searchPresidents   = '';     // set the default search/filter term
+
+*****
+
+$scope.party = ["Democratic",
+    "Democratic-Republican",
+    "Federalist",
+    "No Party",
+    "Republican",
+    "Whig"];
+
+ng-options="x for x in party"
+
+$scope.items = [{
+  id: 1,
+  label: 'aLabel',
+  subItem: { name: 'aSubItem' }
+}, {
+  id: 2,
+  label: 'bLabel',
+  subItem: { name: 'bSubItem' }
+}];
+This will work:
+
+<select ng-options="president as president.party for president in presidents track by president.id" ng-model="selected"></select>
+
+ng-options="presidents.party for president in presidents"

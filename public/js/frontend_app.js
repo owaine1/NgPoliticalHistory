@@ -2,6 +2,7 @@ console.log('loaded frontend_app');
 var frontend_app = angular.module('presidents', []);
 frontend_app.controller('pres_data', do_data);
 
+
 // function years_in_office(presidents) {
 //     console.log('years_in_office');
 //     var ptoy = $scope.president.took_office.slice(0, 4);
@@ -9,26 +10,36 @@ frontend_app.controller('pres_data', do_data);
 //     var ptom = $scope.president.took_office.slice(5, 7)
 //     var plom = $scope.president.left_office.slice(5, 7)
 
-    // {{president.left_office-president.took_office}}
-    // {{if (president.left_office.slice(0,4) - president.took_office.slice(0,4) = 0) { 
-    //     return president.left_office.slice(0,4) - president.took_office.slice(0,4);}} 
-    //     {
-    // <!-- {president.left_office.slice(0,4) - president.took_office.slice(0,4)}} 
-    // {{president.left_office.slice(5,7) - president.took_office.slice(5,7)
-    // + " months"}}
+// {{president.left_office-president.took_office}}
+// {{if (president.left_office.slice(0,4) - president.took_office.slice(0,4) = 0) { 
+//     return president.left_office.slice(0,4) - president.took_office.slice(0,4);}} 
+//     {
+// <!-- {president.left_office.slice(0,4) - president.took_office.slice(0,4)}} 
+// {{president.left_office.slice(5,7) - president.took_office.slice(5,7)
+// + " months"}}
 //     return "1";
 // }
 
+
 function do_data($scope, $http) {
+    $scope.searchPresidents = ''; // set the default search/filter term
+    $scope.years_in_office = function () {
+        console.log('years_in_office');
+        // $http.get('/api/v1/read').then(function (results) {
+        //     console.log(results);
+        //     $scope.presidents = results.data;
+    }
+
     $scope.read = function () {
         console.log('getting all data, still');
         $http.get('/api/v1/read').then(function (results) {
-            console.log(results);
+            // console.log(results);
             $scope.presidents = results.data;
         });
     }
     $scope.read();
-     $scope.create = function () {
+
+    $scope.create = function () {
         console.log('creating president');
         var data = {
             president: $scope.input_president,
@@ -65,12 +76,12 @@ function do_data($scope, $http) {
     }
 }
 
-    // $scope.years_in_office = function () {
-    //     console.log('years_in_office');
-    //     $http.get('/api/v1/read').then(function (results) {
-    //         console.log(results);
-    //         $scope.presidents = results.data;
-    //     });
-    // }
-    // $scope.read();
+// $scope.years_in_office = function () {
+//     console.log('years_in_office');
+//     $http.get('/api/v1/read').then(function (results) {
+//         console.log(results);
+//         $scope.presidents = results.data;
+//     });
+// }
+// $scope.read();
 

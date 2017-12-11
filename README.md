@@ -7,3 +7,6 @@ Used the following technologies
 * express with node.js
 * CRUD
 * bootstrap 4
+
+## install
+to install run `npm install`
